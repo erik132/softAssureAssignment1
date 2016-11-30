@@ -20,5 +20,14 @@ public class ProgramTest {
     	PasswordCriteria cr = new PasswordCriteria();
     	cr.setMinLength(3);
     }
-	
+    
+	//@Ignore
+    @Test (expected = PreconditionError.class)
+    public void test2() {
+    	PasswordCriteria cr = new PasswordCriteria();
+    	cr.setMaxLength(3);
+    }
+    
+    
+    
 }
