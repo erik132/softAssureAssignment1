@@ -9,8 +9,6 @@ import com.google.java.contract.Invariant;
 @Invariant({
 	"minLength >= MIN",
 	"minLength <= maxLength",
-    "minLength != null",
-    "maxLength != null",
     "hasMixedCase == false || (hasMixedCase == true && hasLetters == true)",
     "hasLetters || hasNumbers"
 	//...
@@ -47,7 +45,7 @@ public class PasswordCriteria {
 	public boolean isValid(String pw) {
 
 		boolean res = true;
-		
+
 		if(pw.length() < minLength || pw.length() > maxLength) {
 			return false;
 		}
@@ -87,8 +85,7 @@ public class PasswordCriteria {
 	 */
 	@Requires({
 		"min >= MIN",
-		"min <= maxLength",
-        "min != null"
+		"min <= maxLength"
 	})
 	@Ensures({
 		"minLength == old(min)"
@@ -113,8 +110,7 @@ public class PasswordCriteria {
 	 */
 	@Requires({
 			"max >= MIN",
-            "max >= minLength",
-            "max != null"
+            "max >= minLength"
 	})
 	@Ensures({
 			"maxLength == old(max)"
@@ -138,8 +134,7 @@ public class PasswordCriteria {
 	 * Setter for hasLetters attribute
 	 */
 	@Ensures({
-		"letters() == old(val)",
-        "val != null"
+		"letters() == old(val)"
 	})
 	public void setHasLetters(boolean val) {
 		hasLetters = val;
@@ -159,8 +154,7 @@ public class PasswordCriteria {
 	 * Setter for hasMixedCase attribute
 	 */
     @Ensures({
-            "mixedCase() == old(val)",
-            "val != null"
+            "mixedCase() == old(val)"
     })
 	public void setHasMixedCase(boolean val) {
 		hasMixedCase = val;
@@ -181,8 +175,7 @@ public class PasswordCriteria {
 	 * Setter for hasNumbers attribute
 	 */
     @Ensures({
-            "numbers() == old(val)",
-            "val != null"
+            "numbers() == old(val)"
     })
 	public void setHasNumbers(boolean val) {
 		hasNumbers = val;
@@ -203,8 +196,7 @@ public class PasswordCriteria {
 	 * Setter for hasAllDifferent attribute
 	 */
     @Ensures({
-            "allDifferent() == old(val)",
-            "val != null"
+            "allDifferent() == old(val)"
     })
 	public void setHasAllDifferent(boolean val) {
 		hasAllDifferent = val;
