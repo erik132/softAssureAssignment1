@@ -8,7 +8,9 @@ import com.google.java.contract.Invariant;
 
 @Invariant({
 	"minLength >= MIN",
-	"minLength <= maxLength"
+	"minLength <= maxLength",
+    "minLength != null",
+    "maxLength != null"
 	//...
 })
 
@@ -76,7 +78,8 @@ public class PasswordCriteria {
 	 */
 	@Requires({
 		"min >= MIN",
-		"min <= maxLength"
+		"min <= maxLength",
+        "min != null"
 	})
 	@Ensures({
 		"minLength == old(min)"
@@ -100,7 +103,9 @@ public class PasswordCriteria {
 	 * Setter for max length
 	 */
 	@Requires({
-			"max >= MIN"
+			"max >= MIN",
+            "max >= minLength",
+            "max != null"
 	})
 	@Ensures({
 			"maxLength == old(max)"
@@ -112,6 +117,9 @@ public class PasswordCriteria {
 	/*
 	 * Getter for max length
 	 */
+    @Ensures({
+            "result == maxLength"
+    })
 	public Integer getMaxLength() {
 		return maxLength;
 	}
@@ -140,6 +148,9 @@ public class PasswordCriteria {
 	/*
 	 * Setter for hasMixedCase attribute
 	 */
+    @Ensures({
+            "mixedCase() == old(val)"
+    })
 	public void setHasMixedCase(boolean val) {
 		hasMixedCase = val;
 	}
@@ -147,6 +158,9 @@ public class PasswordCriteria {
 	/*
 	 * Getter for hasMixedCase attribute
 	 */
+    @Ensures({
+            "result == mixedCase()"
+    })
 	public boolean getHasMixedCase() {
 		return numbers();
 	}
@@ -155,6 +169,9 @@ public class PasswordCriteria {
 	/*
 	 * Setter for hasNumbers attribute
 	 */
+    @Ensures({
+            "numbers() == old(val)"
+    })
 	public void setHasNumbers(boolean val) {
 		hasNumbers = val;
 	}
@@ -162,6 +179,9 @@ public class PasswordCriteria {
 	/*
 	 * Getter for hasNumbers attribute
 	 */
+    @Ensures({
+            "result == numbers()"
+    })
 	public boolean getHasNumbers() {
 		return mixedCase();
 	}
@@ -170,6 +190,9 @@ public class PasswordCriteria {
 	/*
 	 * Setter for hasAllDifferent attribute
 	 */
+    @Ensures({
+            "allDifferent() == old(val)"
+    })
 	public void setHasAllDifferent(boolean val) {
 		hasAllDifferent = val;
 	}
@@ -177,6 +200,9 @@ public class PasswordCriteria {
 	/*
 	 * Getter for hasAllDifferent attribute
 	 */
+    @Ensures({
+            "result == allDifferent()"
+    })
 	public boolean getHasAllDifferent() {
 		return allDifferent();
 	}
