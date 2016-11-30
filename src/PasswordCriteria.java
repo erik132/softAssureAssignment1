@@ -10,7 +10,9 @@ import com.google.java.contract.Invariant;
 	"minLength >= MIN",
 	"minLength <= maxLength",
     "minLength != null",
-    "maxLength != null"
+    "maxLength != null",
+    "hasMixedCase == false || (hasMixedCase == true && hasLetters == true)",
+    "hasLetters || hasNumbers"
 	//...
 })
 
@@ -40,7 +42,7 @@ public class PasswordCriteria {
 			"pw.isEmpty() == false"
 	})
 	@Ensures({
-			"isPasswordValid(pw) == true"
+			"isPasswordValid(old(pw)) == true"
 	})
 	public boolean isValid(String pw) {
 
@@ -136,7 +138,8 @@ public class PasswordCriteria {
 	 * Setter for hasLetters attribute
 	 */
 	@Ensures({
-		"letters() == old(val)"
+		"letters() == old(val)",
+        "val != null"
 	})
 	public void setHasLetters(boolean val) {
 		hasLetters = val;
@@ -156,7 +159,8 @@ public class PasswordCriteria {
 	 * Setter for hasMixedCase attribute
 	 */
     @Ensures({
-            "mixedCase() == old(val)"
+            "mixedCase() == old(val)",
+            "val != null"
     })
 	public void setHasMixedCase(boolean val) {
 		hasMixedCase = val;
@@ -177,7 +181,8 @@ public class PasswordCriteria {
 	 * Setter for hasNumbers attribute
 	 */
     @Ensures({
-            "numbers() == old(val)"
+            "numbers() == old(val)",
+            "val != null"
     })
 	public void setHasNumbers(boolean val) {
 		hasNumbers = val;
@@ -198,7 +203,8 @@ public class PasswordCriteria {
 	 * Setter for hasAllDifferent attribute
 	 */
     @Ensures({
-            "allDifferent() == old(val)"
+            "allDifferent() == old(val)",
+            "val != null"
     })
 	public void setHasAllDifferent(boolean val) {
 		hasAllDifferent = val;
