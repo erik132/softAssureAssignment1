@@ -33,6 +33,13 @@ public class PasswordCriteria {
 	 * The method returns true if the password is compliant with the citeria,
 	 * otherwise false.
 	 */
+	@Requires({
+			"pw != null",
+			"pw.isEmpty() == false"
+	})
+	@Ensures({
+			"isPasswordValid(pw) == true"
+	})
 	public boolean isValid(String pw) {
 
 		boolean res = true;
@@ -112,6 +119,9 @@ public class PasswordCriteria {
 	/*
 	 * Getter for max length
 	 */
+	@Ensures({
+			"result == maxLength"
+	})
 	public Integer getMaxLength() {
 		return maxLength;
 	}
