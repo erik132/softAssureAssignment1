@@ -134,9 +134,6 @@ public class PasswordCriteria {
 	/*
 	 * Setter for hasLetters attribute
 	 */
-	@Requires({
-			"val != null"
-	})
 	@Ensures({
 		"letters() == old(val)"
 	})
@@ -157,9 +154,6 @@ public class PasswordCriteria {
 	/*
 	 * Setter for hasMixedCase attribute
 	 */
-	@Requires({
-			"val != null"
-	})
     @Ensures({
             "mixedCase() == old(val)"
     })
@@ -181,9 +175,6 @@ public class PasswordCriteria {
 	/*
 	 * Setter for hasNumbers attribute
 	 */
-	@Requires({
-			"val != null"
-	})
     @Ensures({
             "numbers() == old(val)"
     })
@@ -205,9 +196,6 @@ public class PasswordCriteria {
 	/*
 	 * Setter for hasAllDifferent attribute
 	 */
-	@Requires({
-			"val != null"
-	})
     @Ensures({
             "allDifferent() == old(val)"
     })
