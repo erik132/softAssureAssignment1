@@ -10,7 +10,8 @@ import com.google.java.contract.Invariant;
 	"minLength >= MIN",
 	"minLength <= maxLength",
     "hasMixedCase == false || (hasMixedCase == true && hasLetters == true)",
-    "hasLetters || hasNumbers"
+    "hasLetters || hasNumbers",
+	"!hasAllDifferent || (hasAllDifferent && hasLetters && hasNumbers && hasMixedCase)"
 	//...
 })
 
