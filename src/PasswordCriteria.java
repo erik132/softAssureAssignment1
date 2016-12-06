@@ -11,7 +11,7 @@ import com.google.java.contract.Invariant;
 	"minLength <= maxLength",
     "hasMixedCase == false || (hasMixedCase == true && hasLetters == true)",
     "hasLetters || hasNumbers",
-	"!hasAllDifferent || (hasAllDifferent && hasLetters && hasNumbers && hasMixedCase)"
+	"!hasAllDifferent && (!hasLetters || !hasNumbers) || (hasAllDifferent && hasLetters && hasNumbers && hasMixedCase)"
 	//...
 })
 
