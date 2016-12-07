@@ -43,20 +43,14 @@ public class ProgramTest {
     @Test
     public void test_mixedcase1() {
         PasswordCriteria cr = new PasswordCriteria();
-        cr.setHasNumbers(false);
-        cr.setHasLetters(true);
         cr.setHasMixedCase(true);
-        cr.setHasAllDifferent(false);
         assertEquals(true, cr.isValid("aaZA"));
     }
 
     @Test
     public void test_mixedcase2() {
         PasswordCriteria cr = new PasswordCriteria();
-        cr.setHasNumbers(false);
-        cr.setHasLetters(true);
         cr.setHasMixedCase(false);
-        cr.setHasAllDifferent(false);
         assertEquals(false, cr.isValid("aaZA"));
     }
 
@@ -65,8 +59,6 @@ public class ProgramTest {
         PasswordCriteria cr = new PasswordCriteria();
         cr.setHasNumbers(true);
         cr.setHasLetters(false);
-        cr.setHasMixedCase(false);
-        cr.setHasAllDifferent(false);
         assertEquals(true, cr.isValid("1221"));
     }
 
@@ -75,49 +67,33 @@ public class ProgramTest {
         PasswordCriteria cr = new PasswordCriteria();
         cr.setHasNumbers(true);
         cr.setHasLetters(false);
-        cr.setHasMixedCase(false);
-        cr.setHasAllDifferent(false);
         assertEquals(false, cr.isValid("abcd"));
     }
 
     @Test
     public void test_letters1() {
         PasswordCriteria cr = new PasswordCriteria();
-        cr.setHasNumbers(false);
-        cr.setHasLetters(true);
-        cr.setHasMixedCase(false);
-        cr.setHasAllDifferent(false);
         assertEquals(true, cr.isValid("abcd"));
     }
 
     @Test
     public void test_letters2() {
         PasswordCriteria cr = new PasswordCriteria();
-        cr.setHasNumbers(false);
-        cr.setHasLetters(true);
-        cr.setHasMixedCase(false);
-        cr.setHasAllDifferent(false);
         assertEquals(false, cr.isValid("1234"));
     }
 
     @Test
     public void test_alldifferent1() {
         PasswordCriteria cr = new PasswordCriteria();
-        cr.setHasNumbers(true);
-        cr.setHasLetters(true);
-        cr.setHasMixedCase(true);
         cr.setHasAllDifferent(true);
-        assertEquals(true, cr.isValid("aA14"));
+        assertEquals(true, cr.isValid("abcd"));
     }
 
     @Test
     public void test_alldifferent2() {
         PasswordCriteria cr = new PasswordCriteria();
-        cr.setHasNumbers(false);
-        cr.setHasLetters(true);
-        cr.setHasMixedCase(false);
-        cr.setHasAllDifferent(false);
-        assertEquals(false, cr.isValid("aa14"));
+        cr.setHasAllDifferent(true);
+        assertEquals(false, cr.isValid("aabc"));
     }
 
     @Test
@@ -150,20 +126,6 @@ public class ProgramTest {
     public void test_set_mixed() {
         PasswordCriteria cr = new PasswordCriteria();
         cr.setHasMixedCase(true);
-    }
-
-    @Test (expected = InvariantError.class)
-    public void test_set_alldifferent() {
-        PasswordCriteria cr = new PasswordCriteria();
-        cr.setHasNumbers(true);
-        cr.setHasMixedCase(true);
-        cr.setHasAllDifferent(true);
-    }
-
-    @Test (expected = InvariantError.class)
-    public void test_set_alldifferent_invariant() {
-        PasswordCriteria cr = new PasswordCriteria();
-        cr.setHasAllDifferent(true);
     }
 
     @Test(expected = PreconditionError.class)

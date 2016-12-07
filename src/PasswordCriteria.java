@@ -10,8 +10,7 @@ import com.google.java.contract.Invariant;
 	"minLength >= MIN",
 	"minLength <= maxLength",
     "hasMixedCase == false || (hasMixedCase == true && hasLetters == true)",
-    "hasLetters || hasNumbers",
-	"!hasAllDifferent && (!hasLetters || !hasNumbers) || (hasAllDifferent && hasLetters && hasNumbers && hasMixedCase)"
+    "hasLetters || hasNumbers"
 	//...
 })
 
@@ -41,7 +40,7 @@ public class PasswordCriteria {
 			"pw.isEmpty() == false"
 	})
 	@Ensures({
-			"isPasswordValid(old(pw)) == true"
+			"result == isPasswordValid(old(pw))"
 	})
 	public boolean isValid(String pw) {
 
