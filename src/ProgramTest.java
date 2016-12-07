@@ -1,6 +1,7 @@
 import static org.junit.Assert.assertEquals;
 
 
+import com.sun.org.apache.xalan.internal.xsltc.util.IntegerArray;
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -140,4 +141,47 @@ public class ProgramTest {
         cr.isValid("");
     }
 
+    @Test
+    public void test_get_maxlength() {
+        PasswordCriteria cr = new PasswordCriteria();
+        cr.setMaxLength(10);
+        assertEquals(new Integer(10), cr.getMaxLength());
+    }
+
+    @Test
+    public void test_get_minlength() {
+        PasswordCriteria cr = new PasswordCriteria();
+        cr.setMaxLength(10);
+        cr.setMinLength(5);
+        assertEquals(new Integer(5), cr.getMinLength());
+    }
+
+    @Test
+    public void test_get_letters() {
+        PasswordCriteria cr = new PasswordCriteria();
+        cr.setHasNumbers(true);
+        cr.setHasLetters(false);
+        assertEquals(false, cr.getHasLetters());
+    }
+
+    @Test
+    public void test_get_numbers() {
+        PasswordCriteria cr = new PasswordCriteria();
+        cr.setHasNumbers(true);
+        assertEquals(true, cr.getHasNumbers());
+    }
+
+    @Test
+    public void test_get_mixed() {
+        PasswordCriteria cr = new PasswordCriteria();
+        cr.setHasMixedCase(true);
+        assertEquals(true, cr.getHasMixedCase());
+    }
+
+    @Test
+    public void test_get_alldifferent() {
+        PasswordCriteria cr = new PasswordCriteria();
+        cr.setHasAllDifferent(true);
+        assertEquals(true, cr.getHasAllDifferent());
+    }
 }
